@@ -5,9 +5,9 @@ import NavbarButtonContainer from "../common/NavbarButtonContainer"
 
 const Navbar = () => {
   return (
-    <div className=" w-full h-24 flex shadow-navbar">
+    <div className=" w-full h-24 flex shadow-none md:shadow-navbar ">
         <Container>
-            <div className=" w-full h-full flex items-center justify-between">
+            <div className=" w-full h-full flex flex-row-reverse md:flex-row items-center justify-between">
                 <Logo/>
                 <Menu/>
                 <NavbarButtonContainer/>

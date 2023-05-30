@@ -2,7 +2,7 @@
 
 const Container = ({children}) => {
   return (
-    <div className=" w-full h-full px-[7.5rem]">
+    <div className=" w-full h-full px-[25px] md:px-[7.5rem]">
         {children}
     </div>
   )

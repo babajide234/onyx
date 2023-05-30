@@ -4,7 +4,7 @@ import LogoImg from '../../assets/logo.png'
 const Logo = () => {
   return (
     <Link to='' className="">
-        <img src={LogoImg} alt="" className=" w-20" />
+        <img src={LogoImg} alt="" className=" w-[46px] h-[24px] md:h-[44px]  md:w-20" />
     </Link>
   )
 }

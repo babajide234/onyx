@@ -4,6 +4,7 @@ import Input from "../components/formElements/Input"
 import Radio from "../components/formElements/Radio"
 import RadioCol from "../components/formElements/RadioCol"
 import { RxArrowLeft,RxArrowTopRight } from 'react-icons/rx';
+import { Container } from "postcss"
 
  const Survay = () => {
     const [currentTab, setCurrentTab] = useState(0);
@@ -121,20 +122,22 @@ import { RxArrowLeft,RxArrowTopRight } from 'react-icons/rx';
         },
       ];
   return (
-    <div className=" w-full min-h-screen flex justify-center items-center">
-        <div className=" w-full flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-14">{tabs[currentTab].question}</h2>
+    <Container>
+      <div className=" w-full min-h-screen flex justify-center items-center">
+          <div className=" w-full flex flex-col items-center">
+              <h2 className="text-2xl font-bold mb-14">{tabs[currentTab].question}</h2>
 
-            {tabs[currentTab].content}
+              {tabs[currentTab].content}
 
-            <Button onClick={handleNextTab} type="link" to="/" varient="contained" size="full">Submit</Button>
-            <div className="w-[700px] py-5 flex justify-between">
-                
-                { currentTab !== 0 ? <button onClick={handlePreviousTab} className=" flex items-center"><RxArrowLeft  className="mr-3"/>Go Back </button>: <div/>}
-                <button onClick={handleNextTab} className=" flex items-center">Skip <RxArrowTopRight className="ml-3"/> </button>
-            </div>
-        </div>
-    </div>
+              <Button onClick={handleNextTab} typpe="link" to="/" varient="contained" size="full">Submit</Button>
+              <div className="w-[700px] py-5 flex justify-between">
+                  
+                  { currentTab !== 0 ? <button onClick={handlePreviousTab} className=" flex items-center"><RxArrowLeft  className="mr-3"/>Go Back </button>: <div/>}
+                  <button onClick={handleNextTab} className=" flex items-center">Skip <RxArrowTopRight className="ml-3"/> </button>
+              </div>
+          </div>
+      </div>
+    </Container>
   )
 }
 
