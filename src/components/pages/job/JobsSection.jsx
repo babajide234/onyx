@@ -13,13 +13,12 @@ const JobsSection = () => {
   return (
     <div className="">
         <Container>
-            <div className=" flex flex-col py-10">
-
+            <div className=" flex flex-col pt-20 md:py-10 ">
                 <SectionHeading>
                     <h2 className=" font-bold text-[24px]">And that's why we are here</h2>
-                    <p className=" text-base mb-5 px-[100px]">We understand the frustration that makes job hunting, well, frustrating. To help shorten your Google search time, here’s a list of diversity-focused employment opportunities for Black jobseekers.</p>
+                    <p className=" text-base mb-5 md:px-[100px]">We understand the frustration that makes job hunting, well, frustrating. To help shorten your Google search time, here’s a list of diversity-focused employment opportunities for Black jobseekers.</p>
                 </SectionHeading>
-                <div className=" grid grid-cols-2 gap-8 pt-[90px] px-[100px]">
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 pt-[90px] md:px-[100px]">
                     <ServiceCard
                         src={PIC2}
                         heading="Black Tech Jobs"

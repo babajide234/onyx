@@ -11,6 +11,7 @@ export default {
           text: '#222222',
           text_2: '#444444',
           primary: '#6666FF',
+          primary_dark: '#3030AB',
           secondary: '#0E0B0B',
         },
         backgroundImage: {

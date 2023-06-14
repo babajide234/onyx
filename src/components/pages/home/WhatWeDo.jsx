@@ -16,7 +16,7 @@ const WhatWeDo = () => {
                     </p>
                 </SectionHeading>
 
-                <div className=" grid grid-cols-1 md:grid-cols-2 gap-[38px]">
+                <div className=" pt-10 grid grid-cols-1 md:grid-cols-2 gap-[38px]">
                     <ServiceCard 
                         src={CardImage1} 
                         disabled={false} 

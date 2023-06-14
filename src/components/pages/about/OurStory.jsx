@@ -11,10 +11,10 @@ const OurStory = () => {
         background: `linear-gradient(0deg, rgba(15, 15, 15, 0.91), rgba(15, 15, 15, 0.91))`
     }}>
         <div className=" bg-cover w-full h-full py-[69px]" style={{backgroundImage: `url(${BG})`}}>
-            <Container>
-                <div className=" flex flex-col items-center text-center px-[100px] ">
-                    <h3 className=" text-[55px] text-white font-bold mb-5">Our Story</h3>
-                    <p className=" text-[36px] text-white">We see your grit and talent. We want you to work where other people see it too.</p>
+            <Container>  
+                <div className=" flex flex-col items-center text-center px-[22px]  md:px-[100px] ">
+                    <h3 className=" text-[40px] md:text-[55px] text-white font-bold mb-2 md:mb-5">Our Story</h3>
+                    <p className=" text-[20px] md:text-[36px] text-white">We see your grit and talent. We want you to work where other people see it too.</p>
                 </div>
                 <div className=" w-full h-full py-11">
                     <Sectionwrap 

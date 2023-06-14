@@ -36,11 +36,11 @@ const ContactUs = () => {
             ({ values, handleChange}) => (
                 <Form>
                     <div className=" flex flex-col gap-10">
-                        <div className=" w-full grid grid-cols-2 gap-10">
+                        <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-10">
                             <Input name="firstname" onChange={handleChange} values={values.firstname} placeholder="First Name" />
                             <Input name="lastname" onChange={handleChange} values={values.lastname} placeholder="Last Name"/>
                         </div>
-                        <div className=" w-full grid grid-cols-2 gap-10">
+                        <div className=" w-full grid grid-cols-1 md:grid-cols-2 gap-10">
                             <Input name="email" onChange={handleChange} values={values.email} placeholder="Email"/>
                             <CustomSelect value={values.service} onChange={handleChange} options={options} onSelect={handleSelect} placeholder="What Therapy Service Do You Need?"/>
                         </div>

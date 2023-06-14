@@ -1,12 +1,19 @@
 /* eslint-disable react/prop-types */
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { NavbarMenu } from "../../utils/util"
 import Burger from '../../assets/burger.svg'
+import siteStore from "../../store/siteStore";
+import { RxHamburgerMenu } from "react-icons/rx";
 const Menu = () => {
 
-  const handleNav = ()=>{
+  const {pathname} = useLocation()
 
+  const toggle = siteStore((state)=> state.toggleNav);
+
+  const handleNav = ()=>{
+    toggle();
   }
+  
   return (
     <>
     <div className=" hidden md:flex">
@@ -19,7 +26,8 @@ const Menu = () => {
           }
     </div>
     <button className=" flex md:hidden  " onClick={handleNav}>
-      <img src={Burger} alt="" className="" />
+      {/* <img src={Burger} alt="" className="" /> */}
+      <RxHamburgerMenu className={` text-[30px] stroke-[1px] ${ pathname == '/job' || pathname == '/faq' ? 'text-white' : 'text-text'}`}/>
     </button>
     </>
   )
