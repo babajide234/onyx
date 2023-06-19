@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import Container from "../components/common/Container"
 import { FaArrowLeft } from "react-icons/fa"
-import IMG from '../assets/singleevent.png'
+import IMG from '../assets/singleEvent.png'
 import { FeedsCard } from "../components/common/Cards"
 
 
