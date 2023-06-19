@@ -14,7 +14,7 @@ const JobsSection = () => {
   return (
     <div className="" id="JobsSection">
         <Container>
-            <div className=" flex flex-col pt-20 md:py-10 ">
+            <div className=" flex flex-col py-20 md:py-10 ">
                 <SectionHeading>
                     <h2 className=" font-bold text-[24px]">And that's why we are here</h2>
                     <p className=" text-base mb-5 md:px-[100px]">We understand the frustration that makes job hunting, well, frustrating. To help shorten your Google search time, here’s a list of diversity-focused employment opportunities for Black jobseekers.</p>

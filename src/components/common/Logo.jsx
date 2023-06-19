@@ -9,7 +9,16 @@ const Logo = () => {
 
   return (
     <Link to='' className="">
-        <img src={ pathname == '/job' || pathname == '/faq'  ? WhiteLogo :LogoImg } alt="" className=" w-[46px] h-[24px] md:h-[44px]  md:w-20" />
+      {
+        pathname == "/faq" || pathname == "/job" ? (
+          <>
+            <img src={  WhiteLogo  } alt="" className=" w-[46px] h-[24px] md:h-[44px]  md:w-20 md:hidden" />
+            <img src={ LogoImg } alt="" className=" w-[46px] h-[24px] md:h-[44px]  md:w-20 hidden md:block  " />
+          </>
+        ):(
+          <img src={ LogoImg } alt="" className=" w-[46px] h-[24px] md:h-[44px]  md:w-20 " />
+        )
+      }
     </Link>
   )
 }

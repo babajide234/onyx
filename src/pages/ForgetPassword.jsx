@@ -48,12 +48,12 @@ const ForgetPassword = () => {
                 )
             }
             {
-                selectedIndex == 3 && (
+                selectedIndex == 0 && (
                     <ResetPasswordForm/>
                 )
             }
             {
-                selectedIndex == 0 && (
+                selectedIndex == 4 && (
                     <AuthContainer>
                         <div className=" text-center">
                             <h3 className=" text-[36px] font-bold">Done!</h3>
