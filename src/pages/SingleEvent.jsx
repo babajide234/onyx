@@ -2,8 +2,9 @@ import { FaArrowLeft } from "react-icons/fa"
 import Container from "../components/common/Container"
 import EventBg from "../components/common/EventBg"
 import { Link } from "react-router-dom"
-import IMG from '../assets/singleevent.png'
+import IMG from '../assets/singleEvent.png'
 import { EventCard } from "../components/common/Cards"
+
 const SingleEvent = () => {
   return (
     <EventBg>
