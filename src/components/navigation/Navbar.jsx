@@ -9,6 +9,7 @@ const Navbar = () => {
 
   const { pathname } = useLocation()
   console.log(pathname)
+  // eslint-disable-next-line no-unused-vars
   const isTransparent = pathname == "/job" ||  pathname == "/faq" ? true : false;
 
   return (
