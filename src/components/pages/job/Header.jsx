@@ -41,12 +41,12 @@ const Header = () => {
         <div className="absolute inset-0 bg-black/75 w-full h-full">
                 <Container>
                     <div className=" w-full h-full flex flex-col justify-end items-center pb-[4rem] md:pb-[3rem] text-center">
-                        <HeaderOne>jobs board</HeaderOne>
+                        <HeaderOne>Career Resources</HeaderOne>
                         <h2 className=" text-[24px] md:text-[55px] text-white">
                             There’s a <span className=" font-bold">reason losing a job</span> or changing a career ranks at the top of the most stressful life events.
                         </h2>
                         <div className=" mt-10">
-                            <Link to="#" className=''>
+                            <Link to="#JobsSection" className=''>
                               <motion.svg
                                 width="37"
                                 height="35"

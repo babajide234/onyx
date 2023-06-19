@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { ServiceCard } from "../../common/Cards"
 import Container from "../../common/Container"
+import PIC1 from '../../../assets/career.png'
 import PIC2 from '../../../assets/job2.png'
 import PIC3 from '../../../assets/job3.png'
 import PIC4 from '../../../assets/job4.png'
@@ -11,7 +12,7 @@ import SectionHeading from "../../common/SectionHeading"
 
 const JobsSection = () => {
   return (
-    <div className="">
+    <div className="" id="JobsSection">
         <Container>
             <div className=" flex flex-col pt-20 md:py-10 ">
                 <SectionHeading>
@@ -20,7 +21,7 @@ const JobsSection = () => {
                 </SectionHeading>
                 <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 pt-[90px] md:px-[100px]">
                     <ServiceCard
-                        src={PIC2}
+                        src={PIC1}
                         heading="Black Tech Jobs"
                         subText="Dismally low numbers of new Black hires in tech, especially in leadership, has been broadly discussed. This site is doing something about it by recruiting candidates for clients who pay for job listings."
                     />

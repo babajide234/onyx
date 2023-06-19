@@ -15,7 +15,7 @@ const AboutSection = () => {
                         <h2 className="text-white mb-8 text-[32px] md:text-[64px] text-center font-normal">
                         Do you know <span className=' font-black'>who</span> you&apos;re working for and <span className=' font-black'>what</span> you&apos;re working with?
                         </h2>
-                        <Button varient="contained" size="medium" color="primary" typpe="link">Explore who we are</Button>
+                        <Button to="/about" varient="contained" size="medium" color="primary" typpe="link">Explore who we are</Button>
                 </div>
             </Container>
         </div>
