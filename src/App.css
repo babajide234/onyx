@@ -1,0 +1,41 @@
+/* @keyframes growAndFade {
+    0% {
+      opacity: 0.25;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  } */
+  
+  @keyframes growAndFade {
+    0% {
+        opacity: 0.25;
+        transform: scale(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+  }
+  
+
+  .animate-growAndFade {
+    animation-name: growAndFade;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+  
+  .animate-delay-1000 {
+    animation-delay: 1s;
+  }
+  
+  .animate-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animate-delay-3000 {
+    animation-delay: 3s;
+  }
+  

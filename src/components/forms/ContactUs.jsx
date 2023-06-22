@@ -2,14 +2,18 @@ import { Form, Formik } from "formik"
 import Input from "../formElements/Input"
 import CustomSelect from "../formElements/CustomSelect"
 import Button from "../common/Buttons";
+import contactStore from "../../store/contactStore";
 
 const options = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { value: 'Career coaching', label: 'Career coaching' },
+    { value: 'Interview and Salary Negotiation', label: 'Interview and Salary Negotiation' },
+    { value: 'Job Search Support', label: 'Job Search Support' },
   ];
 
 const ContactUs = () => {
+
+    const toggleSuccess = contactStore((state)=> state.toggleSuccess);
+
     const initialvalues = {
         firstname: "",
         lastname: "",
@@ -18,7 +22,9 @@ const ContactUs = () => {
         careerService: "",
     }
 
-    const submit =()=>{
+    const handleSubmit =()=>{
+        toggleSuccess();
+        console.log('submited');
 
     }
 
@@ -30,7 +36,7 @@ const ContactUs = () => {
   return (
     <Formik
         initialValues={initialvalues}
-        handleSubmit={submit}
+        onSubmit={handleSubmit}
     >
         {
             ({ values, handleChange}) => (
@@ -48,7 +54,7 @@ const ContactUs = () => {
                             <Input name="service" onChange={handleChange} values={values.lastname} placeholder="Is there anything else you’ll like to share?"/>
                         </div>
                         <div className=" w-[350px] mx-auto ">
-                            <Button type="submit" varient="contained" color="primary" size="full">Submit</Button>
+                            <Button  type="submit" varient="contained" color="primary" size="full" >Submit</Button>
                         </div>
                     </div>
                 </Form>

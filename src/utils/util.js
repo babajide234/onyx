@@ -12,7 +12,7 @@ export const NavbarMenu = [
         url: '/about',
     },
     {
-        name: 'Job board',
+        name: 'Career Resources',
         url: '/job',
     },
     {

@@ -12,15 +12,15 @@ const WhatWeDo = () => {
 
     const Resources = [
         {
-            title:"Career Resources",
-            image:CardImage1,
-            description:"Get Access to some of the top sites, resources, and networking events on jobs and careers for black people. These resources cut across several industries, guaranteeing that you find the right one for your career needs.",
-            disable:false
-        },
-        {
             title:"Career Therapy",
             image:CardImage2,
             description:"Are you looking for career guidance? We can help you with that. Ranging from job search support, to career coaching and interview and salary negotiation tips, our Career Therapy service ensures you’re ready and set to land your dream job at your dream company.",
+            disable:false
+        },
+        {
+            title:"Career Resources",
+            image:CardImage1,
+            description:"Get Access to some of the top sites, resources, and networking events on jobs and careers for black people. These resources cut across several industries, guaranteeing that you find the right one for your career needs.",
             disable:false
         },
         {
