@@ -104,3 +104,12 @@ export const IdentifyOptions = [
     { value: 'transgender', label: 'Transgender' },
     { value: 'self-identify', label: 'Self-Describe ( Please Specify ) ' },
 ];
+export const EmploymentOptions = [
+    { value: 'Accounting', label: 'Accounting' },
+    { value: 'Airlines/Aviation', label: 'Airlines/Aviation' },
+    { value: 'Alternative Dispute Resolution', label: 'Alternative Dispute Resolution' },
+    { value: 'Alternative Medicine', label: 'Alternative Medicine' },
+    { value: 'Animation', label: 'Animation' },
+    { value: 'Apparel/Fashion', label: 'Apparel/Fashion' },
+    { value: 'Architecture/Planning', label: 'Architecture/Planning' },
+];

@@ -4,7 +4,7 @@ import Input from "../components/formElements/Input"
 import Radio from "../components/formElements/Radio"
 import RadioCol from "../components/formElements/RadioCol"
 import { RxArrowLeft,RxArrowTopRight } from 'react-icons/rx';
-import { Container } from "postcss"
+import Container from "../components/common/Container"
 
  const Survay = () => {
     const [currentTab, setCurrentTab] = useState(0);
@@ -129,7 +129,7 @@ import { Container } from "postcss"
 
               {tabs[currentTab].content}
 
-              <Button onClick={handleNextTab} typpe="link" to="/" varient="contained" size="full">Submit</Button>
+              <Button onClick={handleNextTab} typpe="btn"  to="/" varient="contained" color="primary" size="full">Submit</Button>
               <div className="w-[700px] py-5 flex justify-between">
                   
                   { currentTab !== 0 ? <button onClick={handlePreviousTab} className=" flex items-center"><RxArrowLeft  className="mr-3"/>Go Back </button>: <div/>}
