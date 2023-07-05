@@ -3,7 +3,6 @@ import RegisterForm from "../components/forms/RegisterForm";
 
 const Register = () => {
   return (
-    // <AuthContainer head={"Create an account."} subhead={'Good to have you here.'}>
     <>
       <RegisterForm />
       <div className=" w-full flex justify-center  ">
@@ -16,7 +15,6 @@ const Register = () => {
         </p>
       </div>
     </>
-    // </AuthContainer>
   );
 };
 

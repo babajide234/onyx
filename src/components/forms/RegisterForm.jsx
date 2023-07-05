@@ -254,7 +254,9 @@ const RegisterForm = () => {
                   varient="contained"
                   color="primary"
                   size="full"
-                  disable={values.employmentIndustry === ""}>
+                  disable={
+                    values.password === "" && values.passwordConfirmation === ""
+                  }>
                   Next
                 </Button>
               </div>

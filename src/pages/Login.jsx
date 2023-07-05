@@ -1,6 +1,6 @@
-import GOOGLE from "../assets/google.svg";
-import APPLE from "../assets/apple.svg";
-import Button from "../components/common/Buttons";
+// import GOOGLE from "../assets/google.svg";
+// import APPLE from "../assets/apple.svg";
+// import Button from "../components/common/Buttons";
 import LoginForm from "../components/forms/LoginForm";
 import AuthContainer from "../components/common/AuthContainer";
 import { Link } from "react-router-dom";
