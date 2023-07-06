@@ -50,8 +50,8 @@ const LoginForm = () => {
               varient="contained"
               color="primary"
               size="full"
-              loading={loaderStore.getState().loading}
-              disable={loaderStore.getState().loading}>
+              loading={loaderStore.getState().loader}
+              disable={loaderStore.getState().loader}>
               Sign in
             </Button>
           </div>

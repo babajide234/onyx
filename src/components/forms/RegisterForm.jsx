@@ -15,31 +15,34 @@ import AuthContainer from "../common/AuthContainer";
 import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import * as Yup from "yup";
 import userStore from "../../store/usserStore";
+import loaderStore from "../../store/loaderStore";
 
 const RegisterForm = () => {
   const register = userStore((state) => state.register);
-  const loading = userStore((state) => state.loading);
-  const [currentStep, setCurrentStep] = useState(0);
+  const loading = loaderStore((state) => state.loader);
+  const step = userStore((state) => state.resetStep);
+  const setStep = userStore((state) => state.setStep);
+  const backStep = userStore((state) => state.backStep);
 
   const handleNext = () => {
-    if (currentStep < 5) {
-      setCurrentStep(currentStep + 1);
+    if (step < 5) {
+      setStep();
     }
   };
 
   const handlePrevious = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
+    if (step > 0) {
+      backStep();
     }
   };
 
   const initialValues = {
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    username: "",
-    how_do_you_identify: "",
-    sexual_orientation: "",
+    userName: "",
+    selfIdentity: "",
+    sexualOrientation: "",
     city: "",
     employmentStatus: "",
     employmentIndustry: "",
@@ -50,18 +53,21 @@ const RegisterForm = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    firstname: Yup.string().required("First Name is required"),
-    lastname: Yup.string().required("Last Name is required"),
+    firstName: Yup.string().required("First Name is required"),
+    lastName: Yup.string().required("Last Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
-    username: Yup.string().required("Username is required"),
-    how_do_you_identify: Yup.string().required("Identification is required"),
-    sexual_orientation: Yup.string().required("Sexual Orientation is required"),
+    userName: Yup.string().required("Username is required"),
+    selfIdentity: Yup.string().required("Identification is required"),
+    sexualOrientation: Yup.string().required("Sexual Orientation is required"),
     city: Yup.string().required("City is required"),
     employmentStatus: Yup.string().required("Employment Status is required"),
     employmentIndustry: Yup.string().required(
       "Employment Industry is required"
     ),
-    setGoal: Yup.string().required("Goal is required"),
+    setGoal: Yup.array()
+      .min(1, "At least one goal must be selected")
+      .max(3, "Maximum of 3 goals can be selected")
+      .required("Goal is required"),
     password: Yup.string().required("Password is required"),
     passwordConfirmation: Yup.string()
       .required("Password Confirmation is required")
@@ -105,7 +111,7 @@ const RegisterForm = () => {
       city: values.city,
       employmentStatus: values.employmentStatus,
       employmentIndustry: values.employmentIndustry,
-      setGoal: values.setGoal,
+      setGoal: values.setGoal.join(","),
       password: values.password,
       passwordConfirmation: values.passwordConfirmation,
     };
@@ -118,30 +124,30 @@ const RegisterForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}>
-      {({ handleChange, values, errors }) => (
+      {({ handleChange, values, errors, isValid }) => (
         <Form>
-          {currentStep === 0 && (
+          {step === 0 && (
             <AuthContainer
               head={"Create an account."}
               subhead={"Good to have you here."}>
               <div className=" mb-5">
                 <LineInput
-                  name="firstname"
-                  value={values.firstname}
+                  name="firstName"
+                  value={values.firstName}
                   onChange={handleChange}
                   type="text"
                   placeholder="First Name"
-                  error={errors.firstname}
+                  error={errors.firstName}
                 />
               </div>
               <div className=" mb-5">
                 <LineInput
-                  name="lastname"
-                  value={values.lastname}
+                  name="lastName"
+                  value={values.lastName}
                   onChange={handleChange}
                   type="text"
                   placeholder="Last Name"
-                  error={errors.lastname}
+                  error={errors.lastName}
                 />
               </div>
               <div className=" mb-5">
@@ -156,40 +162,40 @@ const RegisterForm = () => {
               </div>
               <div className=" mb-5">
                 <LineInput
-                  name="username"
-                  value={values.username}
+                  name="userName"
+                  value={values.userName}
                   onChange={handleChange}
                   type="text"
                   placeholder="Username"
-                  error={errors.username}
+                  error={errors.userName}
                 />
               </div>
               <div className=" mb-5">
-                <Field name="how_do_you_identify">
+                <Field name="selfIdentity">
                   {({ field }) => (
                     <LineCustomSelect
                       name={field.name}
                       options={IdentifyOptions}
                       placeholder="How do you identify yourself?"
-                      error={errors.how_do_you_identify}
+                      error={errors.selfIdentity}
                       onSelect={handleSelect}
                       onChange={handleChange}
-                      value={values.how_do_you_identify}
+                      value={values.selfIdentity}
                     />
                   )}
                 </Field>
               </div>
               <div className=" mb-5">
-                <Field name="sexual_orientation">
+                <Field name="sexualOrientation">
                   {({ field }) => (
                     <LineCustomSelect
                       name={field.name}
                       options={SexOptions}
                       placeholder="What is your sexual orientation?"
-                      error={errors.sexual_orientation}
+                      error={errors.sexualOrientation}
                       onSelect={handleSelect}
                       onChange={handleChange}
-                      value={values.sexual_orientation}
+                      value={values.sexualOrientation}
                     />
                   )}
                 </Field>
@@ -212,12 +218,12 @@ const RegisterForm = () => {
                     color="primary"
                     size="full"
                     disable={
-                      values.firstname === "" &&
-                      values.lastname === "" &&
+                      values.firstName === "" &&
+                      values.lastName === "" &&
                       values.email === "" &&
-                      values.username === "" &&
-                      values.how_do_you_identify === "" &&
-                      values.sexual_orientation === "" &&
+                      values.userName === "" &&
+                      values.selfIdentity === "" &&
+                      values.sexualOrientation === "" &&
                       values.city === ""
                     }>
                     Create account
@@ -226,14 +232,13 @@ const RegisterForm = () => {
               </div>
             </AuthContainer>
           )}
-          {currentStep === 1 && (
+          {step === 1 && (
             <Step header="Set Password">
               <div className=" mb-5">
                 <PasswordInput
                   name="password"
                   value={values.password}
                   onChange={handleChange}
-                  type="text"
                   placeholder="Password"
                   error={errors.password}
                 />
@@ -243,7 +248,6 @@ const RegisterForm = () => {
                   name="passwordConfirmation"
                   value={values.passwordConfirmation}
                   onChange={handleChange}
-                  type="text"
                   placeholder="Password Confirmation"
                   error={errors.passwordConfirmation}
                 />
@@ -262,7 +266,7 @@ const RegisterForm = () => {
               </div>
             </Step>
           )}
-          {currentStep === 2 && (
+          {step === 2 && (
             <Step header="Employment Industry">
               <div className=" mb-5">
                 <Field name="employmentIndustry">
@@ -291,7 +295,7 @@ const RegisterForm = () => {
               </div>
             </Step>
           )}
-          {currentStep === 3 && (
+          {step === 3 && (
             <Step header="What Are Your Goals?">
               <p className="mb-9 mt-10">Select any 3 of your choice</p>
               <div className=" mb-5">
@@ -302,6 +306,7 @@ const RegisterForm = () => {
                     value="Networking"
                     onChange={handleChange}
                     id="setGoal"
+                    checked={values.setGoal.includes("Networking")}
                     className=" mr-5"
                   />
                   <p className="">Networking</p>
@@ -313,6 +318,7 @@ const RegisterForm = () => {
                     value="Mentorship"
                     onChange={handleChange}
                     id="setGoal"
+                    checked={values.setGoal.includes("Mentorship")}
                     className=" mr-5"
                   />
                   <p className="">Mentorship</p>
@@ -323,6 +329,9 @@ const RegisterForm = () => {
                     name="setGoal"
                     value="Career Growth and Development"
                     onChange={handleChange}
+                    checked={values.setGoal.includes(
+                      "Career Growth and Development"
+                    )}
                     id="setGoal"
                     className=" mr-5"
                   />
@@ -334,6 +343,7 @@ const RegisterForm = () => {
                     name="setGoal"
                     value="Job seeker"
                     onChange={handleChange}
+                    checked={values.setGoal.includes("Job seeker")}
                     id="setGoal"
                     className=" mr-5"
                   />
@@ -345,6 +355,7 @@ const RegisterForm = () => {
                     name="setGoal"
                     value="Recruitment"
                     onChange={handleChange}
+                    checked={values.setGoal.includes("Recruitment")}
                     id="setGoal"
                     className=" mr-5"
                   />
@@ -356,25 +367,34 @@ const RegisterForm = () => {
                     name="setGoal"
                     value="Others"
                     onChange={handleChange}
+                    checked={values.setGoal.includes("Others")}
                     id="setGoal"
                     className=" mr-5"
                   />
                   <p className="">Others</p>
                 </label>
               </div>
+              {errors.setGoal && (
+                <div className="text-red-500 text-xs mb-5">
+                  {errors.setGoal}
+                </div>
+              )}
+
               <div className="mb-5">
                 <Button
                   onClick={handleNext}
                   varient="contained"
                   color="primary"
                   size="full"
-                  disable={values.setGoal === ""}>
+                  disable={
+                    values.setGoal.length === 0 || values.setGoal.length !== 3
+                  }>
                   Next
                 </Button>
               </div>
             </Step>
           )}
-          {currentStep === 4 && (
+          {step === 4 && (
             <Step header="Employment Status">
               <p className="mb-9 mt-10">Select one of your choice</p>
               <div className=" mb-5">
@@ -435,7 +455,7 @@ const RegisterForm = () => {
               </div>
             </Step>
           )}
-          {currentStep === 5 && (
+          {step === 5 && (
             <Step header="Current Employer">
               <div className=" mb-5">
                 <LineInput
@@ -447,6 +467,19 @@ const RegisterForm = () => {
                   error={errors.employer}
                 />
               </div>
+              <div className=" mb-5">
+                {Object.keys(errors).length > 0 && (
+                  <div>
+                    <ul className="">
+                      {Object.values(errors).map((error, index) => (
+                        <li className=" text-red-500" key={index}>
+                          {error}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
               <div className="mb-5">
                 <Button
                   type="submit"
@@ -454,14 +487,14 @@ const RegisterForm = () => {
                   color="primary"
                   size="full"
                   loading={loading}
-                  disable={loading}>
+                  disable={!isValid || loading}>
                   Continue
                 </Button>
               </div>
             </Step>
           )}
 
-          {/* {currentStep === 6 && (
+          {step === 6 && (
             <div className="">
               <div className=" flex justify-center mb-5">
                 <div className="  w-40 h-40 rounded-full bg-primary flex justify-center items-center text-7xl text-white ">
@@ -482,7 +515,7 @@ const RegisterForm = () => {
                 </Button>
               </div>
             </div>
-          )} */}
+          )}
         </Form>
       )}
     </Formik>
