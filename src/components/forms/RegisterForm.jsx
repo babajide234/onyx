@@ -16,6 +16,7 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import * as Yup from "yup";
 import userStore from "../../store/usserStore";
 import loaderStore from "../../store/loaderStore";
+import InputSelect from "../formElements/InputSelect";
 
 const RegisterForm = () => {
   const register = userStore((state) => state.register);
@@ -40,6 +41,7 @@ const RegisterForm = () => {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     userName: "",
     selfIdentity: "",
     sexualOrientation: "",
@@ -56,6 +58,12 @@ const RegisterForm = () => {
     firstName: Yup.string().required("First Name is required"),
     lastName: Yup.string().required("Last Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
+    phone: Yup.string()
+      .matches(
+        /^(\+\d{1,2}\s?)?(\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/,
+        "Invalid phone number format. Please enter a valid phone number."
+      )
+      .required("Phone number is required"),
     userName: Yup.string().required("Username is required"),
     selfIdentity: Yup.string().required("Identification is required"),
     sexualOrientation: Yup.string().required("Sexual Orientation is required"),
@@ -158,6 +166,16 @@ const RegisterForm = () => {
                   type="text"
                   placeholder="Email"
                   error={errors.email}
+                />
+              </div>
+              <div className=" mb-5">
+                <LineInput
+                  name="phone"
+                  value={values.phone}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Phone Number"
+                  error={errors.phone}
                 />
               </div>
               <div className=" mb-5">
@@ -271,7 +289,16 @@ const RegisterForm = () => {
               <div className=" mb-5">
                 <Field name="employmentIndustry">
                   {({ field }) => (
-                    <LineCustomSelect
+                    // <LineCustomSelect
+                    //   name={field.name}
+                    //   value={values.employmentIndustry}
+                    //   options={EmploymentOptions}
+                    //   onChange={handleChange}
+                    //   onSelect={handleSelect}
+                    //   placeholder="Select an industry"
+                    //   error={errors.employmentIndustry}
+                    // />
+                    <InputSelect
                       name={field.name}
                       value={values.employmentIndustry}
                       options={EmploymentOptions}
@@ -507,7 +534,8 @@ const RegisterForm = () => {
               </div>
               <div className="mb-5">
                 <Button
-                  type="submit"
+                  typpe="link"
+                  to="/"
                   varient="contained"
                   color="primary"
                   size="full">

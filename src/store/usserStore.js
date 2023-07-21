@@ -36,7 +36,8 @@ const userStore = create(
             type: "success",
           });
         } catch (error) {
-          
+          loaderStore.getState().setLoader(false);
+
           if (error.response && error.response.data) {
             loaderStore.getState().setLoader(false);
             const { data } = error.response;
@@ -84,7 +85,7 @@ const userStore = create(
             set((state) => ({
               ...state,
               resetStep: get().resetStep + 1,
-          }));
+            }));
 
             useAlertStore.getState().setAlert({
               message: "Registration successful ",
@@ -92,7 +93,6 @@ const userStore = create(
             });
           }
         } catch (error) {
-          
           if (error.response && error.response.data) {
             loaderStore.getState().setLoader(false);
             const { data } = error.response;
@@ -219,11 +219,52 @@ const userStore = create(
           loaderStore.getState().setLoader(false);
         }
       },
+      verifyToken: async (code) => {
+        try {
+          loaderStore.setState({ loading: true });
+          // eslint-disable-next-line no-unused-vars
+          const response = await instance.post("auth/ConfirmEmailByLink", {
+            code,
+          });
+
+          useAlertStore.getState().setAlert({
+            message: "Email Verified Successfully",
+            type: "success",
+          });
+
+          return true;
+        } catch (error) {
+          loaderStore.getState().setLoader(false);
+          if (error.response && error.response.data) {
+            const { data } = error.response;
+
+            Object.keys(data).forEach((key) => {
+              const messages = data[key];
+              messages.forEach((message) => {
+                useAlertStore.getState().setAlert({
+                  message,
+                  type: "error",
+                });
+              });
+            });
+          } else {
+            useAlertStore.getState().setAlert({
+              message: "An error occurred during login.",
+              type: "error",
+            });
+          }
+        } finally {
+          loaderStore.getState().setLoader(false);
+        }
+      },
       setStep: () => {
         set((state) => ({ ...state, resetStep: get().resetStep + 1 }));
       },
       backStep: () => {
         set((state) => ({ ...state, resetStep: get().resetStep - 1 }));
+      },
+      resStep: () => {
+        set((state) => ({ ...state, resetStep: 0 }));
       },
       setCode: (value) => {
         set((state) => ({ ...state, code: value }));

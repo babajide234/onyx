@@ -11,6 +11,16 @@ const postStore = create((set) => ({
       const res = await instance.get("app/list-posts");
       console.log(res);
       set((state) => ({ ...state, posts: res.data }));
+      return res.data;
+    } catch (error) {
+      console.log("error: " + error);
+    }
+  },
+  getSingeEvents: async (id) => {
+    try {
+      const res = await instance.get(`app/list-posts?Id=${id}`);
+      console.log(res);
+      return res.data;
     } catch (error) {
       console.log("error: " + error);
     }

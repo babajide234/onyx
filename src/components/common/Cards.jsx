@@ -8,9 +8,13 @@ import { motion } from "framer-motion";
 import IMG from "../../assets/event1.png";
 import { Link } from "react-router-dom";
 
-export const ServiceCard = ({ src, disabled, heading, subText }) => {
+export const ServiceCard = ({ src, link, disabled, heading, subText }) => {
   return (
-    <div className=" relative w-full bg-white shadow-servicard hover:shadow-servicard_hover rounded-[10px] hover:cursor-pointer overflow-hidden">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className=" relative w-full bg-white shadow-servicard hover:shadow-servicard_hover rounded-[10px] hover:cursor-pointer overflow-hidden">
       <div
         className=" w-full h-[242px] bg-gray-400 bg-cover"
         style={{ backgroundImage: `url(${src})` }}></div>
@@ -25,7 +29,7 @@ export const ServiceCard = ({ src, disabled, heading, subText }) => {
       {disabled && (
         <div className="absolute top-0 left-0 w-full h-full bg-white/70"></div>
       )}
-    </div>
+    </a>
   );
 };
 
@@ -67,6 +71,18 @@ export const FaqCard = ({ question, answer }) => {
     setIsOpen(!isOpen); // Toggle open/close state
   };
 
+  const formatAnswer = (answerText) => {
+    // Split the answer string at </br> to create an array of strings
+    const lines = answerText.split("</br>");
+
+    // Map over the array of strings and wrap each line in a <p> element with line breaks
+    return lines.map((line, index) => (
+      <p key={index} className="text-[16px] md:text-[24px] text-white">
+        {line}
+      </p>
+    ));
+  };
+
   return (
     <motion.div
       className={`w-full px-5 py-5 md:px-[59px] md:py-[39px] border border-white rounded-[10px] hover:border-primary hover:cursor-pointer group mb-10 ${
@@ -97,7 +113,7 @@ export const FaqCard = ({ question, answer }) => {
             className=" text-[16px] md:text-[24px] text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}>
-            {answer}
+            {formatAnswer(answer)}
           </motion.p>
         </motion.div>
       )}
@@ -133,11 +149,11 @@ export const FeedsCard = ({ src, heading, subText }) => {
 export const EventCard = ({ item }) => {
   return (
     <Link
-      to={`/event/${item?.postCategoryId}`}
-      className=" relative w-full bg-white group  hover:cursor-pointer overflow-hidden rounded-xl hover:shadow-2xl ">
+      to={`/event/${item?.id}`}
+      className=" relative w-full bg-white group border border-slate-50 hover:cursor-pointer overflow-hidden rounded-xl hover:shadow-2xl ">
       <div
-        className=" w-full h-[242px] bg-gray-400 bg-cover "
-        style={{ backgroundImage: `url(${IMG})` }}></div>
+        className=" w-full h-[242px]"
+        style={{ backgroundImage: `url(${item?.image})` }}></div>
       <div className=" w-full py-3 pl-2 pr-5">
         <h3 className=" text-[20px] font-bold leading-[188%] text-text mb-2 font-[Raleway]">
           {item?.title}

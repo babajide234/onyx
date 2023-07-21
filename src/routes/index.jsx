@@ -15,76 +15,86 @@ import Event from "../pages/Event";
 import SingleEvent from "../pages/SingleEvent";
 import SinglePost from "../pages/SinglePost";
 import Posts from "../pages/Posts";
+import Verify from "../pages/Verify";
+import AllEvents from "../pages/AllEvents";
 
 const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
         path: "/",
-        element: <MainLayout />,
-        children: [
-          {
-            path: "/",
-            element: <Home/>,
-          },
-          {
-            path: "/therapy",
-            element: <Therapy/>,
-          },
-          {
-            path: "/about",
-            element: <About/>,
-          },
-          {
-            path: "/job",
-            element: <Job/>,
-          },
-          {
-            path: "/faq",
-            element: <Faq/>,
-          },
-          {
-            path: "/survey",
-            element: <Survay/>,
-          },
-          {
-            path: "/terms",
-            element: <Terms/>,
-          },
-          {
-            path: "/event",
-            element: <Event/>,
-          },
-          {
-            path: "/posts",
-            element: <Posts/>,
-          },
-          {
-            path: "/posts/:postId",
-            element: <SinglePost/>,
-          },
-          {
-            path: "/event/:eventId",
-            element: <SingleEvent/>,
-          },
-        ],
-    },
-    {
-      path: "/",
-      element: <AuthLayout />,
-      children: [
-        {
-          path: "/login",
-          element: <Login />,
-        },
-        {
-          path: "/register",
-          element: <Register />,
-        },
-        {
-          path: "/forget-password",
-          element: <ForgetPassword />,
-        },
-      ]
-    }
-])
+        element: <Home />,
+      },
+      {
+        path: "/therapy",
+        element: <Therapy />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/job",
+        element: <Job />,
+      },
+      {
+        path: "/faq",
+        element: <Faq />,
+      },
+      {
+        path: "/survey",
+        element: <Survay />,
+      },
+      {
+        path: "/terms",
+        element: <Terms />,
+      },
+      {
+        path: "/event",
+        element: <Event />,
+      },
+      {
+        path: "/events",
+        element: <AllEvents />,
+      },
+      {
+        path: "/posts",
+        element: <Posts />,
+      },
+      {
+        path: "/posts/:postId",
+        element: <SinglePost />,
+      },
+      {
+        path: "/event/:eventId",
+        element: <SingleEvent />,
+      },
+      {
+        path: "/verfy/:id",
+        element: <Verify />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword />,
+      },
+    ],
+  },
+]);
 
 export default router;

@@ -22,11 +22,13 @@ const Events = () => {
               {posts &&
                 posts.data
                   .slice(0, 4)
-                  .map((post, index) => <EventCard item={post} key={index} />)}
+                  .map((post, index) => (
+                    <EventCard id={post.id} item={post} key={index} />
+                  ))}
             </div>
             <div className="">
               <Link
-                to="/"
+                to="/events"
                 className="flex items-center p-3 hover:text-primary ">
                 See more <FaArrowRight className=" ml-2 text-text" />
               </Link>
@@ -38,6 +40,7 @@ const Events = () => {
               <p className=" mb-3">Contribute to finding safer workspaces</p>
               <Button
                 typpe="link"
+                to="/survey"
                 varient="contained"
                 color="primary"
                 size="small">

@@ -11,16 +11,12 @@ const Event = () => {
   const getEvents = postStore((state) => state.getEvents);
   const isLoggedIn = userStore((state) => state.isLoggedIn);
   const navigate = useNavigate();
-  // const {
-  //   data: posts,
-  //   isLoading,
-  //   isError,
-  //   error,
-  // } = useQuery("posts", getEvents);
 
-  useEffect(() => {
-    getEvents();
-  }, [getEvents]);
+  const getPost = useQuery(["posts"], () => getEvents());
+
+  // useEffect(() => {
+  //   getEvents();
+  // }, [getEvents]);
 
   useEffect(() => {
     if (!isLoggedIn) {

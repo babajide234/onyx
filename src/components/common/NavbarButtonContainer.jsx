@@ -8,7 +8,7 @@ const NavbarButtonContainer = () => {
   const details = userStore((state) => state.details);
   const logout = userStore((state) => state.logout);
 
-  const [dropdown, setDropDown] = useState(false);
+  const [dropdown, setDropDown] = useState(true);
 
   const getInitials = () => {
     // Assuming the details object contains the user's first and last name
