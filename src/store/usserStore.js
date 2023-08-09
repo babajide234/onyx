@@ -7,7 +7,7 @@ import { persist } from "zustand/middleware";
 const initialState = {
   token: null,
   details: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   loading: false,
   resetStep: 0,
   ccde: null,
