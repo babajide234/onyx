@@ -12,7 +12,7 @@ const AuthLayout = ({ children }) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/event");
+      navigate("/feed");
     }
   }, [isLoggedIn, navigate]);
 

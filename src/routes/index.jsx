@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import Survay from "../pages/Survay";
@@ -11,12 +12,13 @@ import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgetPassword from "../pages/ForgetPassword";
-import Event from "../pages/Event";
+import Feed from "../pages/Feed";
 import SingleEvent from "../pages/SingleEvent";
-import SinglePost from "../pages/SinglePost";
-import Posts from "../pages/Posts";
 import Verify from "../pages/Verify";
+import AllFeeds from "../pages/AllFeeds";
+import Profile from "../pages/Profile";
 import AllEvents from "../pages/AllEvents";
+import SingleFeed from "../pages/SingleFeed";
 
 const router = createBrowserRouter([
   {
@@ -52,28 +54,32 @@ const router = createBrowserRouter([
         element: <Terms />,
       },
       {
-        path: "/event",
-        element: <Event />,
-      },
-      {
         path: "/events",
         element: <AllEvents />,
       },
       {
-        path: "/posts",
-        element: <Posts />,
-      },
-      {
-        path: "/posts/:postId",
-        element: <SinglePost />,
-      },
-      {
-        path: "/event/:eventId",
+        path: "/events/:eventsId",
         element: <SingleEvent />,
+      },
+      {
+        path: "/feed",
+        element: <Feed />,
+      },
+      {
+        path: "/feeds",
+        element: <AllFeeds />,
+      },
+      {
+        path: "/feed/:eventId",
+        element: <SingleFeed />,
       },
       {
         path: "/verfy/:id",
         element: <Verify />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

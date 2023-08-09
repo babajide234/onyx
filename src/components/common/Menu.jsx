@@ -22,11 +22,11 @@ const Menu = () => {
           <NavLink
             exact
             key={index}
-            to={isLoggedIn && item.url === "/" ? "/event" : item.url}
+            to={isLoggedIn && item.url === "/" ? "/feed" : item.url}
             className={(props) => {
               return props.isActive
-                ? "mr-16 last-of-type:mr-0 text-primary font-bold"
-                : " mr-16 last-of-type:mr-0 text-text font-bold";
+                ? "mr-16 last-of-type:mr-0 text-primary font-bold capitalize"
+                : " mr-16 last-of-type:mr-0 text-text font-bold capitalize";
             }}>
             {item.name}
           </NavLink>

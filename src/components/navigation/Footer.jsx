@@ -9,7 +9,7 @@ const Footer = () => {
       <Container>
         <div className="flex flex-col-reverse  md:flex-row w-full h-full text-center items-center justify-center">
           <p className=" text-white text-xs">
-            © 2023 OnyxTruth. All rights reserved.&nbsp;
+            © 2023 The Onyx Truth. All rights reserved.&nbsp;
             <Link to="/terms" className=" underline mr-2">
               Terms and Conditions
             </Link>

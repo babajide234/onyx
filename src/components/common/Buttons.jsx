@@ -69,7 +69,7 @@ const Button = ({
                     "bg-white border-white text-primary") ||
                   (varient == "outlined" &&
                     color == "primary" &&
-                    "bg-transparent border-primary text-white ") ||
+                    "bg-transparent border-primary border  text-primary ") ||
                   (varient == "outlined" &&
                     color == "secondary" &&
                     "bg-transparent border-secondary text-secondary") ||

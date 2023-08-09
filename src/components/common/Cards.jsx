@@ -7,6 +7,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import IMG from "../../assets/event1.png";
 import { Link } from "react-router-dom";
+import EVE from "../../assets/eventcard.png";
 
 export const ServiceCard = ({ src, link, disabled, heading, subText }) => {
   return (
@@ -17,7 +18,11 @@ export const ServiceCard = ({ src, link, disabled, heading, subText }) => {
       className=" relative w-full bg-white shadow-servicard hover:shadow-servicard_hover rounded-[10px] hover:cursor-pointer overflow-hidden">
       <div
         className=" w-full h-[242px] bg-gray-400 bg-cover"
-        style={{ backgroundImage: `url(${src})` }}></div>
+        style={{
+          background: `url(${src})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}></div>
       <div className=" w-full h-[252px] p-[30px]">
         <h3 className=" text-[24px] font-bold leading-[188%] text-text font-[Raleway]">
           {heading}
@@ -39,12 +44,17 @@ export const ServiceExtendCard = ({
   disabled,
   heading,
   subText,
+  link,
 }) => {
   return (
     <div className=" relative w-full bg-white shadow-lg hover:shadow-servicard_hover rounded-[10px] hover:cursor-pointer overflow-hidden">
       <div
         className=" w-full h-[292px] bg-gray-400 bg-cover"
-        style={{ backgroundImage: `url(${src})` }}></div>
+        style={{
+          background: `url(${src})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}></div>
       <div className=" w-full min-h-[252px] p-[30px] flex flex-col">
         <h3 className=" text-[22px] font-bold leading-[188%] text-text font-['Raleway']">
           {heading}
@@ -53,7 +63,12 @@ export const ServiceExtendCard = ({
         <p className=" text-text text-base leading-[188%] font-['Raleway'] mb-3">
           {subText}
         </p>
-        <Button typpe="link" varient="contained" color="primary" size="full">
+        <Button
+          to={link}
+          typpe="link"
+          varient="contained"
+          color="primary"
+          size="full">
           Get Started
         </Button>
       </div>
@@ -128,7 +143,11 @@ export const FeedsCard = ({ src, heading, subText }) => {
       className=" relative w-full bg-white group  hover:cursor-pointer overflow-hidden">
       <div
         className=" w-full h-[242px] bg-gray-400 bg-cover group-hover:shadow-2xl"
-        style={{ backgroundImage: `url(${IMG})` }}></div>
+        style={{
+          background: `url(${IMG})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}></div>
       <div className=" w-full h-[252px] py-[18px]">
         <h3 className=" text-[24px] font-bold leading-[188%] text-text mb-4 font-[Raleway]">
           Heading text
@@ -149,17 +168,67 @@ export const FeedsCard = ({ src, heading, subText }) => {
 export const EventCard = ({ item }) => {
   return (
     <Link
-      to={`/event/${item?.id}`}
+      to={`/feed/${item?.id}`}
       className=" relative w-full bg-white group border border-slate-50 hover:cursor-pointer overflow-hidden rounded-xl hover:shadow-2xl ">
       <div
         className=" w-full h-[242px]"
-        style={{ backgroundImage: `url(${item?.image})` }}></div>
+        style={{
+          background: `url(${item?.image})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}></div>
       <div className=" w-full py-3 pl-2 pr-5">
         <h3 className=" text-[20px] font-bold leading-[188%] text-text mb-2 font-[Raleway]">
           {item?.title}
         </h3>
         <p className="mb-[10px] text-sm font-normal">{item?.intorduction}</p>
       </div>
+    </Link>
+  );
+};
+export const EventsCard = ({
+  id,
+  single = false,
+  title,
+  image,
+  date,
+  link,
+  venue,
+}) => {
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear().toString();
+    const month = date.toLocaleString("default", { month: "short" });
+    const day = date.getDate();
+
+    return `${month}-${day}-${year}`;
+  }
+  return (
+    <Link
+      to={`/events/${id}`}
+      className=" hover:shadow-lg bg-white w-[17.3rem] px-4 py-10 flex flex-col text-center items-center rounded-3xl">
+      <h3 className=" text-2xl font-bold text-text mb-5">{title}</h3>
+      <img src={image} alt="" className=" w-full h-[10rem] mb-5 " />
+      <p className=" mb-5">
+        {formatDate(date)} | {venue}
+      </p>
+      <div className=" mb-5">
+        <Button
+          to={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          typpe={"link"}
+          varient="outlined"
+          color="secondary"
+          size="medium">
+          Register Now
+        </Button>
+      </div>
+      {single && (
+        <Link to="/events" className=" underline text-base font-normal">
+          See more Events
+        </Link>
+      )}
     </Link>
   );
 };

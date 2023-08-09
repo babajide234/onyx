@@ -55,7 +55,12 @@ const LineCustomSelect = ({ name, options, placeholder }) => {
           } focus:border-primary/30 flex justify-between items-center
         `}
         onClick={toggleDropdown}>
-        <span className="text-gray-400">{selectedOption || placeholder}</span>
+        <span
+          className={`${
+            selectedOption ? "text-gray-900 font-medium" : "text-gray-400"
+          }`}>
+          {selectedOption || placeholder}
+        </span>
         <RxCaretRight
           className={`${
             isOpen ? "rotate-90" : ""

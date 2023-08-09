@@ -7,7 +7,7 @@ import { persist } from "zustand/middleware";
 const initialState = {
   token: null,
   details: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
   loading: false,
   resetStep: 0,
   ccde: null,
@@ -72,6 +72,100 @@ const userStore = create(
         } finally {
           loaderStore.getState().setLoader(false);
           console.log("finalizing state after login");
+        }
+      },
+      getProfile: async () => {
+        try {
+          loaderStore.getState().setLoader(true);
+
+          const response = await instance.get("app/profile");
+          return response.data;
+        } catch (error) {
+          loaderStore.getState().setLoader(false);
+
+          if (error.response && error.response.data) {
+            loaderStore.getState().setLoader(false);
+            const { data } = error.response;
+            console.log(data);
+            if (Array.isArray(data)) {
+              // Handle an array of error messages
+              data.forEach((message) => {
+                useAlertStore.getState().setAlert({
+                  message,
+                  type: "error",
+                });
+              });
+            } else if (typeof data === "object" && data.message) {
+              // Handle a single error message object
+              useAlertStore.getState().setAlert({
+                message: data.message,
+                type: "error",
+              });
+            } else {
+              // Handle other cases where the error response format is unexpected
+              useAlertStore.getState().setAlert({
+                message: "An error occurred Request.",
+                type: "error",
+              });
+            }
+          } else {
+            useAlertStore.getState().setAlert({
+              message: "An error occurred during login.",
+              type: "error",
+            });
+          }
+        } finally {
+          loaderStore.getState().setLoader(false);
+        }
+      },
+      editProfile: async (data) => {
+        try {
+          loaderStore.getState().setLoader(true);
+
+          const response = await instance.post("app/edit-profile", data);
+          if (response.status === 200) {
+            useAlertStore.getState().setAlert({
+              message: "Profile Update successful ",
+              type: "success",
+            });
+          }
+          return response.data;
+        } catch (error) {
+          loaderStore.getState().setLoader(false);
+
+          if (error.response && error.response.data) {
+            loaderStore.getState().setLoader(false);
+            const { data } = error.response;
+            console.log(data);
+            if (Array.isArray(data)) {
+              // Handle an array of error messages
+              data.forEach((message) => {
+                useAlertStore.getState().setAlert({
+                  message,
+                  type: "error",
+                });
+              });
+            } else if (typeof data === "object" && data.message) {
+              // Handle a single error message object
+              useAlertStore.getState().setAlert({
+                message: data.message,
+                type: "error",
+              });
+            } else {
+              // Handle other cases where the error response format is unexpected
+              useAlertStore.getState().setAlert({
+                message: "An error occurred Request.",
+                type: "error",
+              });
+            }
+          } else {
+            useAlertStore.getState().setAlert({
+              message: "An error occurred during login.",
+              type: "error",
+            });
+          }
+        } finally {
+          loaderStore.getState().setLoader(false);
         }
       },
       register: async (data) => {

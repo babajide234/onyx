@@ -2,6 +2,8 @@ import { MdLogout } from "react-icons/md";
 import userStore from "../../store/usserStore";
 import Button from "./Buttons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
 const NavbarButtonContainer = () => {
   const isLoggedIn = userStore((state) => state.isLoggedIn);
@@ -24,14 +26,26 @@ const NavbarButtonContainer = () => {
     <div className=" gap-3 hidden md:flex">
       {isLoggedIn ? (
         <div className=" w-full flex justify-center relative">
-          <div
-            onClick={() => setDropDown(!dropdown)}
-            className=" w-14 h-14 rounded-full bg-primary flex justify-center items-center hover:cursor-pointer hover:shadow-2xl">
-            <p className=" font-bold text-white">{getInitials()}</p>
-          </div>
+          {!details.photo ? (
+            <div
+              onClick={() => setDropDown(!dropdown)}
+              className=" w-14 h-14 rounded-full bg-primary flex justify-center items-center hover:cursor-pointer hover:shadow-2xl">
+              <p className=" font-bold text-white">{getInitials()}</p>
+            </div>
+          ) : (
+            <div
+              onClick={() => setDropDown(!dropdown)}
+              className=" relative w-14 h-14 rounded-full bg-primary flex justify-center items-center hover:cursor-pointer hover:shadow-2xl">
+              <img
+                src={details.photo}
+                alt=""
+                className="w-full h-full inset-0 absolute rounded-full"
+              />
+            </div>
+          )}
           <div
             className={` ${
-              dropdown ? " hidden h-0 overflow-hidden p-0 " : " h-[5rem]"
+              dropdown ? " hidden h-0 overflow-hidden p-0 " : " min-h-[5rem]"
             } w-[10rem] rounded-2xl bg-white px-5 py-5 absolute shadow-md top-16 right-0 border`}>
             <button
               onClick={() => logout()}
@@ -39,6 +53,13 @@ const NavbarButtonContainer = () => {
               {" "}
               <MdLogout className=" mr-3" /> Logout
             </button>
+            <Link
+              to="/profile"
+              onClick={() => setDropDown(!dropdown)}
+              className="flex py-2 px-2 hover:text-primary font-semibold hover:bg-gray-50 w-full">
+              {" "}
+              <FaUser className="mr-3" /> Profile
+            </Link>
           </div>
         </div>
       ) : (

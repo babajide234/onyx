@@ -40,6 +40,7 @@ const Services = () => {
       rate: "$50/Access ",
     },
   ];
+
   return (
     <div className=" w-full h-full  md:pt-[138px]">
       <Container>
@@ -62,6 +63,7 @@ const Services = () => {
               heading={item.name}
               rate={item.rate}
               subText={item.text}
+              link={"#contact"}
             />
           ))}
         </div>
@@ -80,7 +82,7 @@ const Services = () => {
             </Button>
           </div>
         </div>
-        <div className=" w-full py-16 md:px-[100px]">
+        <div id="contact" className=" w-full py-16 md:px-[100px]">
           <div className=" w-full py-5 text-center">
             <h2 className=" text-[48px] font-extrabold">Contact us</h2>
           </div>

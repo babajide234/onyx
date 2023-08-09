@@ -50,7 +50,7 @@ export const CAREERTHERAPYSERVICE = [
 
 export const FAQs = [
   {
-    name: "What Is The Onyx Truth?",
+    name: "What Is The Onyx Truth ?",
     answer:
       "The Onyx Truth is an anonymous place for Black professionals to come together to share insights on their workplace experiences.",
   },
@@ -69,7 +69,7 @@ export const FAQs = [
     answer: "Yes. This platform runs on full anonymity.",
   },
   {
-    name: "How Does The Onyx Truth Protect The Identity Of Users",
+    name: "How Does The Onyx Truth Protect The Identity Of Users?",
     answer:
       "(a) Email registered during registration will not be shared on The Onyx Board.</br> (b)Companies with less than five reviews will not display open-ended feedback </br> (c) Data cannot be segmented for companies with less than five reviews",
   },

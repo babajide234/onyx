@@ -8,8 +8,15 @@ import PIC4 from "../../../assets/job4.png";
 import PIC5 from "../../../assets/job5.png";
 import PIC6 from "../../../assets/job6.png";
 import SectionHeading from "../../common/SectionHeading";
+import postStore from "../../../store/postStore";
+import { useQuery } from "react-query";
 
 const JobsSection = () => {
+  const getResource = postStore((state) => state.getResource);
+
+  const resource = useQuery(["resource"], () => {
+    return getResource();
+  });
   const jobs = [
     {
       image: PIC1,
@@ -70,15 +77,19 @@ const JobsSection = () => {
             </p>
           </SectionHeading>
           <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 pt-[90px] md:px-[100px]">
-            {jobs.map((job, index) => (
-              <ServiceCard
-                key={index}
-                link={job.link}
-                src={job.image}
-                heading={job.heading}
-                subText={job.subText}
-              />
-            ))}
+            {resource.isFetched ? (
+              resource?.data?.map((job, index) => (
+                <ServiceCard
+                  key={index}
+                  link={job.resourceLink}
+                  src={job.image}
+                  heading={job.title}
+                  subText={job.content}
+                />
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </Container>
