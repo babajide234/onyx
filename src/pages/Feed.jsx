@@ -16,11 +16,11 @@ const Feed = () => {
   const getPost = useQuery(["posts"], () => getPosts());
   const getEvent = useQuery(["events"], () => getEvents());
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/login");
+  //   }
+  // }, [isLoggedIn, navigate]);
 
   return (
     <>

@@ -22,7 +22,7 @@ const Menu = () => {
           <NavLink
             exact
             key={index}
-            to={isLoggedIn && item.url === "/" ? "/feed" : item.url}
+            to={true && item.url === "/" ? "/feed" : item.url}
             className={(props) => {
               return props.isActive
                 ? "mr-16 last-of-type:mr-0 text-primary font-bold capitalize"
